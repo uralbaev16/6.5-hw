@@ -9,7 +9,7 @@ const Header = () => {
         <div className="flex items-center">
           <Link to={"/"}><span className=" text-white ml-4 text-xl font-bold">Tailwind UI</span></Link>
         </div>
-        <ul className="flex gap-2">
+        <ul className="flex gap-4 text-white">
           <li>
             <span><NavLink to={"/"}>Home</NavLink></span>
           </li>
