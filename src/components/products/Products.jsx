@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { request } from "../../api";
 import Loading from "../loading/Loading";
+import ProductModal from "./product-modal";
 
 
 const Products = () => {
@@ -8,7 +9,8 @@ const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0)
- 
+  const [oneItem, setOneItem] = useState(null)
+
 
   useEffect(() => {
     setLoading(true);
@@ -32,6 +34,7 @@ const Products = () => {
               src={product.thumbnail}
               className="h-[250px]"
               alt={product.title}
+              onClick={() => setOneItem(product)}
             />
             <h2 className="font-bold">{product.title}</h2>
             <button className="bg-slate-400 rounded-md px-4 py-1 text-white font-bold mt-2 hover:bg-slate-500 duration-300 active:scale-95 duration-300">Show details</button>
@@ -42,7 +45,11 @@ const Products = () => {
       {loading && <Loading count={limit} />}
 
       <button className="block mx-auto mt-4 bg-slate-400 p-2 rounded-md text-white hover:bg-slate-500 duration-300 active:scale-95 duration-300" onClick={()=> setCount(count + 1)}>See more</button>
-    </div>
+      {
+        oneItem &&
+        <ProductModal oneItem={oneItem} setOneItem={setOneItem}/>
+      }
+  </div>
   );
 };
 
